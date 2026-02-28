@@ -1,0 +1,47 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "jacob-fyi/images"
+public_folder: "jacob-fyi/images"
+
+collections:
+
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    format: "json"
+    create: false
+    identifier_field: "title"
+    fields:
+      - { label: "Project Number", name: "num", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Client", name: "client", widget: "string" }
+      - { label: "Services (comma separated)", name: "services", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", hint: "Use **bold text** to highlight key phrases." }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+
+      - label: "About"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - { label: "Bio — Paragraph 1", name: "bio_p1", widget: "text", hint: "Use **bold text** for emphasis." }
+          - { label: "Bio — Paragraph 2", name: "bio_p2", widget: "text", hint: "Use **bold text** for emphasis." }
+          - { label: "Bio — Paragraph 3", name: "bio_p3", widget: "text", hint: "Use **bold text** for emphasis." }
+          - { label: "Bio — Paragraph 4", name: "bio_p4", widget: "text", hint: "Use **bold text** for emphasis." }
+          - { label: "Outside the Office", name: "outside", widget: "text", hint: "Use **bold text** for emphasis." }
+
+      - label: "Site Settings"
+        name: "site"
+        file: "content/site.json"
+        fields:
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Instagram Handle", name: "instagram_handle", widget: "string" }
+          - { label: "Instagram URL", name: "instagram_url", widget: "string" }
+          - { label: "LinkedIn Name", name: "linkedin_name", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedin_url", widget: "string" }
+          - { label: "Availability Note", name: "availability", widget: "text", hint: "Use **bold text** for emphasis." }

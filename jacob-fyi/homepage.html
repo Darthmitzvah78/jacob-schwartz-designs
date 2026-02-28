@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jacob Guiles Schwartz — Art Director & Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #f4f1ec;
+      --white:   #ffffff;
+      --text:    #0f0f0f;
+      --muted:   #999;
+      --border:  #ddd9d2;
+      --accent:  #1ca882;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body:    'Barlow', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── CURSOR ──────────────────────────────────────────────────── */
+    #cur-dot {
+      position: fixed; z-index: 9999; pointer-events: none;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: width .2s, height .2s;
+    }
+    #cur-ring {
+      position: fixed; z-index: 9998; pointer-events: none;
+      width: 40px; height: 40px;
+      border: 1.5px solid rgba(28,168,130,.35);
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: width .3s, height .3s, border-color .3s;
+    }
+    body.hover #cur-dot  { width: 16px; height: 16px; }
+    body.hover #cur-ring { width: 60px; height: 60px; border-color: rgba(28,168,130,.6); }
+
+    /* ── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1.5px solid var(--text);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+      height: 52px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex; gap: 32px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .nav-links a { transition: color .15s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    #hero {
+      border-bottom: 1.5px solid var(--text);
+      padding: 40px 32px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(88px, 12.5vw, 180px);
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .hero-name .accent { color: var(--accent); }
+    .hero-name .outline {
+      -webkit-text-stroke: 2px var(--text);
+      color: transparent;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-desc {
+      font-size: 13px; line-height: 1.7;
+      color: var(--muted);
+      max-width: 340px;
+    }
+    .hero-desc strong { color: var(--text); font-weight: 500; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--text);
+      color: var(--bg);
+      padding: 14px 24px;
+      transition: background .2s, color .2s;
+    }
+    .hero-cta:hover { background: var(--accent); color: #fff; }
+    .hero-cta::after { content: '→'; font-size: 13px; }
+
+    .hero-years {
+      position: absolute;
+      right: 32px; top: 40px;
+      font-family: var(--font-display);
+      font-size: clamp(120px, 18vw, 260px);
+      font-weight: 800;
+      -webkit-text-stroke: 1.5px var(--border);
+      color: transparent;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ── TICKER ──────────────────────────────────────────────────── */
+    .ticker {
+      overflow: hidden;
+      background: var(--text);
+      padding: 10px 0;
+      border-bottom: 1.5px solid var(--text);
+    }
+    .ticker-track {
+      display: flex; white-space: nowrap;
+      animation: ticker 20s linear infinite;
+    }
+    .ticker-item {
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bg);
+      padding: 0 32px;
+    }
+    .ticker-item span { color: var(--accent); margin-right: 32px; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── WORK ────────────────────────────────────────────────────── */
+    #work { background: var(--bg); }
+
+    .work-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding: 32px 32px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .work-title {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .work-count {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.14em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--border);
+    }
+    .work-grid > * { border-bottom: 1px solid var(--border); }
+    .work-grid > *:nth-child(odd) { border-right: 1px solid var(--border); }
+
+    .project {
+      display: block;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s, transform .5s;
+    }
+    .project.visible { opacity: 1; transform: translateY(0); }
+
+    .project-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: #e0ddd7;
+    }
+    .project-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .7s cubic-bezier(.16,1,.3,1), filter .4s;
+      filter: saturate(.9);
+    }
+    .project:hover .project-img img {
+      transform: scale(1.04);
+      filter: saturate(1.1);
+    }
+
+    .project-info {
+      padding: 20px 24px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .project-cats {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 10px;
+    }
+    .cat {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+    .cat.outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .project-name {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .project-link {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap .2s;
+    }
+    .project:hover .project-link { gap: 12px; }
+    .project-link::after { content: '▶'; font-size: 8px; }
+
+    /* ── ABOUT ───────────────────────────────────────────────────── */
+    #about {
+      border-top: 1.5px solid var(--text);
+      border-bottom: 1.5px solid var(--text);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .about-l {
+      padding: 64px 40px;
+      border-right: 1.5px solid var(--text);
+    }
+    .about-r {
+      padding: 64px 40px;
+    }
+    .about-kicker {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .about-headline {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 5.5vw, 80px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: .92;
+      margin-bottom: 32px;
+    }
+    .about-headline .accent { color: var(--accent); }
+    .about-body {
+      font-size: 14px; line-height: 1.8;
+      color: #555;
+      max-width: 460px;
+    }
+    .about-body strong { color: var(--text); font-weight: 500; }
+
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; height: 100%;
+    }
+    .stat {
+      padding: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+    .stat-n {
+      font-family: var(--font-display);
+      font-size: 64px; font-weight: 800;
+      letter-spacing: -0.04em; line-height: 1;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .stat-n sup { font-size: 32px; color: var(--accent); }
+    .stat-l {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      border-top: 1.5px solid var(--text);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+    }
+    .footer-l {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .footer-r {
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--accent);
+      transition: letter-spacing .2s;
+    }
+    .footer-r:hover { letter-spacing: 0.12em; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .work-grid { grid-template-columns: 1fr; }
+      .work-grid > *:nth-child(odd) { border-right: none; }
+      #about { grid-template-columns: 1fr; }
+      .about-l { border-right: none; border-bottom: 1.5px solid var(--text); }
+      .hero-years { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Jacob<span>.</span></div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="mailto:jacob@jacob.fyi">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-label">Birmingham, AL &nbsp;·&nbsp; Available for freelance</div>
+  <h1 class="hero-name">
+    Jacob<br>
+    <span class="accent">Guiles</span><br>
+    <span class="outline">Schwartz</span>
+  </h1>
+  <div class="hero-years">16</div>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      <strong>Art Director & Designer.</strong> Sixteen-plus years building identities,
+      campaigns, and systems for ambitious brands. Self-taught. Sushi chef by origin.
+      Graffiti by instinct.
+    </p>
+    <a href="#work" class="hero-cta">View Work</a>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span>✦</span>Brand Identity</span>
+    <span class="ticker-item"><span>✦</span>Art Direction</span>
+    <span class="ticker-item"><span>✦</span>Web UI</span>
+    <span class="ticker-item"><span>✦</span>Print Design</span>
+    <span class="ticker-item"><span>✦</span>Packaging</span>
+    <span class="ticker-item"><span>✦</span>Typography</span>
+    <span class="ticker-item"><span>✦</span>Corporate Suite</span>
+    <span class="ticker-item"><span>✦</span>Campaign</span>
+    <span class="ticker-item"><span>✦</span>Signage</span>
+    <!-- dupe for seamless -->
+    <span class="ticker-item"><span>✦</span>Brand Identity</span>
+    <span class="ticker-item"><span>✦</span>Art Direction</span>
+    <span class="ticker-item"><span>✦</span>Web UI</span>
+    <span class="ticker-item"><span>✦</span>Print Design</span>
+    <span class="ticker-item"><span>✦</span>Packaging</span>
+    <span class="ticker-item"><span>✦</span>Typography</span>
+    <span class="ticker-item"><span>✦</span>Corporate Suite</span>
+    <span class="ticker-item"><span>✦</span>Campaign</span>
+    <span class="ticker-item"><span>✦</span>Signage</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-header">
+    <div class="work-title">Selected Work</div>
+    <div class="work-count">09 Projects</div>
+  </div>
+  <div class="work-grid">
+
+    <a href="#" class="project">
+      <div class="project-img">
+        <img src="images/Titan-Corp-Suite.jpg" alt="Titan Coatings">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Identity</span>
+          <span class="cat outline">Art Direction</span>
+          <span class="cat outline">Web UI</span>
+        </div>
+        <div class="project-name">Titan Coatings</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+    <a href="#" class="project">
+      <div class="project-img">
+        <img src="images/ProctorU-Corp-Suite.jpg" alt="ProctorU">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Identity</span>
+          <span class="cat outline">Art Direction</span>
+          <span class="cat outline">Web UI</span>
+        </div>
+        <div class="project-name">ProctorU</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+    <a href="#" class="project">
+      <div class="project-img">
+        <img src="images/UAB-Posters-straight.jpg" alt="UAB Hospital">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Campaign</span>
+          <span class="cat outline">Photography</span>
+          <span class="cat outline">Print</span>
+        </div>
+        <div class="project-name">UAB Hospital</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+    <a href="#" class="project">
+      <div class="project-img">
+        <img src="images/Emerant-Corp-Suite.jpg" alt="Emerant Wealth">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Identity</span>
+          <span class="cat outline">Corporate Suite</span>
+          <span class="cat outline">Web UI</span>
+        </div>
+        <div class="project-name">Emerant Wealth</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+    <a href="#" class="project">
+      <div class="project-img">
+        <img src="images/NBN-All.jpg" alt="Nut Butter Nation">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Packaging</span>
+          <span class="cat outline">Identity</span>
+          <span class="cat outline">Print</span>
+        </div>
+        <div class="project-name">Nut Butter Nation</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+    <a href="#" class="project">
+      <div class="project-img">
+        <img src="images/Create-MockUp-640x640.jpg" alt="Create Birmingham">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Branding</span>
+          <span class="cat outline">Event</span>
+          <span class="cat outline">Print</span>
+        </div>
+        <div class="project-name">Create Birmingham</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+    <a href="#" class="project">
+      <div class="project-img">
+        <img src="images/JR-home.jpg" alt="J.R. Burns">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Identity</span>
+          <span class="cat outline">Web UI</span>
+        </div>
+        <div class="project-name">J.R. Burns</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+    <a href="#" class="project">
+      <div class="project-img">
+        <img src="images/FB-collat.jpg" alt="Community Food Bank">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Identity</span>
+          <span class="cat outline">Print</span>
+          <span class="cat outline">Screenprinting</span>
+        </div>
+        <div class="project-name">Community Food Bank</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+    <a href="#" class="project" style="grid-column: span 2;">
+      <div class="project-img" style="aspect-ratio: 32/10;">
+        <img src="images/vecchia-side-sign.jpg" alt="Vecchia" style="object-position: center 30%;">
+      </div>
+      <div class="project-info">
+        <div class="project-cats">
+          <span class="cat">Signage</span>
+          <span class="cat outline">Logo</span>
+        </div>
+        <div class="project-name">Vecchia</div>
+        <div class="project-link">View Project</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-l">
+    <div class="about-kicker">About</div>
+    <h2 class="about-headline">
+      Sushi chef<br>turned<br><span class="accent">art director.</span>
+    </h2>
+    <p class="about-body">
+      Self-taught. Birmingham-born. Before pixel grids, there were rice rolls and graffiti murals —
+      <strong>an apprenticeship in precision, composition, and the art of making something
+      people want to consume.</strong>
+      <br><br>
+      Sixteen-plus years later: deep research, strategic collaboration, disciplined restraint.
+      I believe great design defies process. It requires a dynamic journey of collaboration,
+      refinement, coffee, more refinement.
+    </p>
+  </div>
+  <div class="about-r">
+    <div class="about-stats">
+      <div class="stat">
+        <div class="stat-n">16<sup>+</sup></div>
+        <div class="stat-l">Years</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">9</div>
+        <div class="stat-l">Featured Clients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" style="font-size:40px; letter-spacing:-.02em; line-height:1.1;">BHM</div>
+        <div class="stat-l">Birmingham, AL</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" style="font-size:28px; letter-spacing:-.01em; line-height:1.2;">ID / WEB<br>PRINT</div>
+        <div class="stat-l">Disciplines</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-l">© 2024 Jacob Guiles Schwartz &nbsp;·&nbsp; Birmingham, AL</div>
+  <a href="mailto:jacob@jacob.fyi" class="footer-r">jacob@jacob.fyi →</a>
+</footer>
+
+<script>
+  // cursor
+  const dot  = document.getElementById('cur-dot');
+  const ring = document.getElementById('cur-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  (function loop(){
+    rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,.project').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hover'));
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const cards=[...e.target.parentElement.children];
+        const i=cards.indexOf(e.target);
+        setTimeout(()=>e.target.classList.add('visible'),i%2*100);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.1});
+  document.querySelectorAll('.project').forEach(c=>io.observe(c));
+</script>
+</body>
+</html>
