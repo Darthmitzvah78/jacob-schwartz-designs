@@ -61,18 +61,6 @@
     .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(240,240,240,0.4); }
 
     /* ── Flashlight ── */
-    .flashlight {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      background: radial-gradient(
-        circle 800px at var(--fx) var(--fy),
-        transparent 0%,
-        rgba(0,0,0,0.1) 55%,
-        rgba(0,0,0,0.32) 100%
-      );
-    }
 
     /* ── Curtain ── */
     .curtain {
@@ -972,7 +960,6 @@
   </div>
 
   <!-- Flashlight -->
-  <div class="flashlight"></div>
 
   <!-- Cursor -->
   <div class="cursor-dot"  id="cursorDot"></div>

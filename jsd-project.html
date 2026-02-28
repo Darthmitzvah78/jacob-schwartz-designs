@@ -12,7 +12,6 @@
     :root {
       --black: #0e0806; --white: #faf0ea; --yellow: #ff6b5e;
       --mid: #8a6658; --border: #201410; --border-heavy: #341e16;
-      --fx: -999px; --fy: -999px;
     }
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: 'Space Grotesk', sans-serif; font-size: 16px; line-height: 1.4; -webkit-font-smoothing: antialiased; }
@@ -21,7 +20,6 @@
     .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(255,107,94,0.5); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%,-50%); transition: width .3s,height .3s,border-color .3s; }
     .cursor-dot.hover { width: 8px; height: 8px; background: var(--white); }
     .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(250,240,234,0.4); }
-    .flashlight { position: fixed; inset: 0; pointer-events: none; z-index: 9999; background: radial-gradient(circle 800px at var(--fx) var(--fy), transparent 0%, rgba(0,0,0,0.1) 55%, rgba(0,0,0,0.32) 100%); }
     .curtain { position: fixed; inset: 0; background: var(--black); z-index: 99998; animation: curtainLift 1s cubic-bezier(0.76,0,0.24,1) 0.25s forwards; }
     @keyframes curtainLift { to { transform: translateY(-100%); } }
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
@@ -150,7 +148,6 @@
     <div class="footer-links"><a href="#">Instagram</a><a href="#">LinkedIn</a></div>
   </footer>
 
-  <div class="flashlight"></div>
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
@@ -162,8 +159,6 @@
     document.querySelectorAll('a').forEach(el=>{el.addEventListener('mouseenter',()=>{dot.classList.add('hover');ring.classList.add('hover');});el.addEventListener('mouseleave',()=>{dot.classList.remove('hover');ring.classList.remove('hover');});});
     document.addEventListener('mouseleave',()=>{cx=-100;cy=-100;});
     const root=document.documentElement;let raf=false;
-    document.addEventListener('mousemove',e=>{if(!raf){raf=true;requestAnimationFrame(()=>{root.style.setProperty('--fx',e.clientX+'px');root.style.setProperty('--fy',e.clientY+'px');raf=false;});}});
-    document.addEventListener('mouseleave',()=>{root.style.setProperty('--fx','-999px');root.style.setProperty('--fy','-999px');});
     document.querySelectorAll('.nav-back').forEach(link=>{link.addEventListener('mouseenter',()=>link.classList.remove('springing'));link.addEventListener('mousemove',e=>{const r=link.getBoundingClientRect();link.style.transform=`translate(${(e.clientX-(r.left+r.width/2))*.38}px,${(e.clientY-(r.top+r.height/2))*.5}px)`;});link.addEventListener('mouseleave',()=>{link.classList.add('springing');link.style.transform='';});});
   </script>
 
