@@ -1,2 +1,7 @@
 [build]
   publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/jacob-schwartz-designs.html"
+  status = 200
