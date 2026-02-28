@@ -95,84 +95,10 @@
 
   <div class="page-header">
     <h1 class="page-title"><span class="line-inner">Work</span></h1>
-    <p class="page-count">08 Projects</p>
+    <p class="page-count" id="cms-project-count">— Projects</p>
   </div>
 
-  <div class="projects-list">
-
-    <a href="jsd-proctoru.html" class="project-row reveal">
-      <div class="project-thumb"><img src="jacob-fyi/images/ProctorU-Logo-bluebg.png" alt="ProctorU"></div>
-      <div class="project-info">
-        <div class="project-meta"><span class="project-num">001</span><span class="project-category">Identity &amp; Brand System</span></div>
-        <p class="project-name">ProctorU</p>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="jsd-titan.html" class="project-row flip reveal">
-      <div class="project-thumb"><img src="jacob-fyi/images/Titan-Logo.jpg" alt="Titan Coatings"></div>
-      <div class="project-info">
-        <div class="project-meta"><span class="project-num">002</span><span class="project-category">Identity &amp; Brand System</span></div>
-        <p class="project-name">Titan Coatings</p>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="jsd-emerant.html" class="project-row reveal">
-      <div class="project-thumb"><img src="jacob-fyi/images/Emerant-Logo.jpg" alt="Emerant Wealth"></div>
-      <div class="project-info">
-        <div class="project-meta"><span class="project-num">003</span><span class="project-category">Identity &amp; Brand System</span></div>
-        <p class="project-name">Emerant Wealth</p>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="jsd-nbn.html" class="project-row flip reveal">
-      <div class="project-thumb"><img src="jacob-fyi/images/NBN-All.jpg" alt="Nut Butter Nation"></div>
-      <div class="project-info">
-        <div class="project-meta"><span class="project-num">004</span><span class="project-category">Packaging &amp; Identity</span></div>
-        <p class="project-name">Nut Butter Nation</p>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="jsd-vecchia.html" class="project-row reveal">
-      <div class="project-thumb"><img src="jacob-fyi/images/Vecchia-Logo.jpg" alt="Vecchia"></div>
-      <div class="project-info">
-        <div class="project-meta"><span class="project-num">005</span><span class="project-category">Logo &amp; Signage</span></div>
-        <p class="project-name">Vecchia</p>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="jsd-jrburns.html" class="project-row flip reveal">
-      <div class="project-thumb"><img src="jacob-fyi/images/JR-Burns-Logo.jpg" alt="J.R. Burns"></div>
-      <div class="project-info">
-        <div class="project-meta"><span class="project-num">006</span><span class="project-category">Identity</span></div>
-        <p class="project-name">J.R. Burns</p>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="jsd-uab.html" class="project-row reveal">
-      <div class="project-thumb"><img src="jacob-fyi/images/UAB-HR-Elevators.jpg" alt="UAB Hospital"></div>
-      <div class="project-info">
-        <div class="project-meta"><span class="project-num">007</span><span class="project-category">Campaign</span></div>
-        <p class="project-name">UAB Hospital</p>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="jsd-create.html" class="project-row flip reveal">
-      <div class="project-thumb"><img src="jacob-fyi/images/Create-MockUp-640x640.jpg" alt="Create Birmingham"></div>
-      <div class="project-info">
-        <div class="project-meta"><span class="project-num">008</span><span class="project-category">Branding &amp; Event</span></div>
-        <p class="project-name">Create Birmingham</p>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-  </div>
+  <div id="cms-projects-list" class="projects-list"></div>
 
   <footer>
     <p class="footer-copy">© 2026 Jacob Schwartz Designs — Birmingham, AL</p>
@@ -183,8 +109,7 @@
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
   <script>
-    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
     let cx=-100,cy=-100,rx=-100,ry=-100;
     document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;dot.style.left=cx+'px';dot.style.top=cy+'px';});
@@ -195,6 +120,10 @@
     document.addEventListener('mousemove',e=>{if(!raf){raf=true;requestAnimationFrame(()=>{root.style.setProperty('--fx',e.clientX+'px');root.style.setProperty('--fy',e.clientY+'px');raf=false;});}});
     document.addEventListener('mouseleave',()=>{root.style.setProperty('--fx','-999px');root.style.setProperty('--fy','-999px');});
     document.querySelectorAll('.nav-back').forEach(link=>{link.addEventListener('mouseenter',()=>link.classList.remove('springing'));link.addEventListener('mousemove',e=>{const r=link.getBoundingClientRect();link.style.transform=`translate(${(e.clientX-(r.left+r.width/2))*.38}px,${(e.clientY-(r.top+r.height/2))*.5}px)`;});link.addEventListener('mouseleave',()=>{link.classList.add('springing');link.style.transform='';});});
+  </script>
+  <script src="./js/cms.js"></script>
+  <script>
+    loadCmsContent({ page: 'projects', onLoad: renderProjectsList });
   </script>
   <script>
     if (window.netlifyIdentity) {

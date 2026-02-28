@@ -4,11 +4,18 @@
   "category": "Identity",
   "client": "J.R. Burns",
   "services": "Logo, Web UI, T-Shirt",
-  "description": "J.R. Burns is a **nationally renowned instrument craftsman** with 20+ years of experience hand-building and repairing guitars, banjos, and stringed instruments. The logo and identity were drawn directly from his collection of vintage instruments and tools — the goal being a timeless brand that pays homage to the builders who came before him.",
+  "description": "J.R. Burns is a **nationally renowned instrument craftsman** with 20+ years of experience hand-building and repairing guitars, banjos, and stringed instruments. The logo and identity were drawn directly from his collection of vintage instruments and tools \u2014 the goal being a timeless brand that pays homage to the builders who came before him.",
   "hero_image": "jacob-fyi/images/JR-Burns-Shirt.jpg",
+  "thumbnail": "jacob-fyi/images/JR-Burns-Logo.jpg",
   "gallery_cols": "cols-2",
   "gallery": [
-    { "image": "jacob-fyi/images/JR-Burns-Logo.jpg", "layout": "tall" },
-    { "image": "jacob-fyi/images/JR-home.jpg", "layout": "tall" }
+    {
+      "image": "jacob-fyi/images/JR-Burns-Logo.jpg",
+      "layout": "tall"
+    },
+    {
+      "image": "jacob-fyi/images/JR-home.jpg",
+      "layout": "tall"
+    }
   ]
 }

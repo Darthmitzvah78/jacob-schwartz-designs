@@ -4,11 +4,18 @@
   "category": "Logo & Signage",
   "client": "Vecchia Pizzeria",
   "services": "Logo, Signage, Identity",
-  "description": "Vecchia is an authentic Italian Neapolitan pizzeria and mercato. The name — meaning **\"old\"** — reflects a devotion to traditional pizza-making: hand-made brick ovens imported directly from Italy, dough tossed fresh every morning. A philosophy that the old ways are still the best ways. The identity needed to embody that same conviction — timeless, handcrafted, unapologetic.",
+  "description": "Vecchia is an authentic Italian Neapolitan pizzeria and mercato. The name \u2014 meaning **\"old\"** \u2014 reflects a devotion to traditional pizza-making: hand-made brick ovens imported directly from Italy, dough tossed fresh every morning. A philosophy that the old ways are still the best ways. The identity needed to embody that same conviction \u2014 timeless, handcrafted, unapologetic.",
   "hero_image": "jacob-fyi/images/vecchia-side-sign.jpg",
+  "thumbnail": "jacob-fyi/images/Vecchia-Logo.jpg",
   "gallery_cols": "cols-2",
   "gallery": [
-    { "image": "jacob-fyi/images/Vecchia-Logo.jpg", "layout": "tall" },
-    { "image": "jacob-fyi/images/vecchia-top-sign.jpg", "layout": "tall" }
+    {
+      "image": "jacob-fyi/images/Vecchia-Logo.jpg",
+      "layout": "tall"
+    },
+    {
+      "image": "jacob-fyi/images/vecchia-top-sign.jpg",
+      "layout": "tall"
+    }
   ]
 }

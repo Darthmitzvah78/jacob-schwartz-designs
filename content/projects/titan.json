@@ -4,13 +4,26 @@
   "category": "Identity & Brand System",
   "client": "Titan Coatings",
   "services": "Art Direction, Brand System, Logo, Print, Web UI",
-  "description": "Titan Coatings is a manufacturer of **high-quality enamels and coatings** for the protection of metal surfaces, with specialisations in coil coating, aluminium extrusion, and transportation markets. The brand needed to convey industrial precision, durability, and technical authority — from logo to full corporate suite, print collateral, and web UI. Photography by Caleb Chancey.",
+  "description": "Titan Coatings is a manufacturer of **high-quality enamels and coatings** for the protection of metal surfaces, with specialisations in coil coating, aluminium extrusion, and transportation markets. The brand needed to convey industrial precision, durability, and technical authority \u2014 from logo to full corporate suite, print collateral, and web UI. Photography by Caleb Chancey.",
   "hero_image": "jacob-fyi/images/Titan-Corp-Suite.jpg",
+  "thumbnail": "jacob-fyi/images/Titan-Logo.jpg",
   "gallery_cols": "cols-2",
   "gallery": [
-    { "image": "jacob-fyi/images/Titan-Logo.jpg", "layout": "tall" },
-    { "image": "jacob-fyi/images/Titan-Factory.jpg", "layout": "tall" },
-    { "image": "jacob-fyi/images/Titan-Lab-tech.jpg", "layout": "tall" },
-    { "image": "jacob-fyi/images/Titan-Website.jpg", "layout": "tall" }
+    {
+      "image": "jacob-fyi/images/Titan-Logo.jpg",
+      "layout": "tall"
+    },
+    {
+      "image": "jacob-fyi/images/Titan-Factory.jpg",
+      "layout": "tall"
+    },
+    {
+      "image": "jacob-fyi/images/Titan-Lab-tech.jpg",
+      "layout": "tall"
+    },
+    {
+      "image": "jacob-fyi/images/Titan-Website.jpg",
+      "layout": "tall"
+    }
   ]
 }

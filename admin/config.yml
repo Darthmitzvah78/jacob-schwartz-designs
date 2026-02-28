@@ -11,16 +11,18 @@ collections:
     label: "Projects"
     folder: "content/projects"
     format: "json"
-    create: false
+    create: true
     identifier_field: "title"
+    sortable_fields: ["num", "title"]
     fields:
-      - { label: "Project Number", name: "num", widget: "string" }
+      - { label: "Project Number", name: "num", widget: "string", hint: "e.g. 009" }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Category", name: "category", widget: "string", hint: "e.g. Identity & Brand System" }
       - { label: "Client", name: "client", widget: "string" }
       - { label: "Services (comma separated)", name: "services", widget: "string" }
       - { label: "Description", name: "description", widget: "text", hint: "Use **bold text** to highlight key phrases." }
       - { label: "Hero Image", name: "hero_image", widget: "image" }
+      - { label: "Thumbnail (Work page)", name: "thumbnail", widget: "image", hint: "Shown on the Work listing page. Can differ from the hero image." }
       - label: "Gallery Columns"
         name: "gallery_cols"
         widget: "select"
@@ -42,6 +44,15 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
+
+      - label: "Project Order"
+        name: "projects-order"
+        file: "content/projects-order.json"
+        fields:
+          - label: "Projects (in display order)"
+            name: "projects"
+            widget: "list"
+            hint: "Add/remove/reorder project IDs here. Each ID is the filename of the project (without .json). New projects created above will use a slugified version of their title as the ID."
 
       - label: "About"
         name: "about"
