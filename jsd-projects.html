@@ -125,7 +125,7 @@
     <a href="jacob-schwartz-designs.html" class="nav-back">← Home</a>
     <a href="jacob-schwartz-designs.html" class="nav-logo"><span class="logo-top">Jacob Schwartz</span><span class="logo-bottom">Designs</span></a>
     <div class="nav-right">
-      <button id="sort-login-btn" onclick="window.netlifyIdentity && window.netlifyIdentity.open()" style="display:none; background:none; border:none; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--mid); cursor:pointer !important; font-family:inherit; transition:color .2s; padding:0;">Edit Order</button>
+      <button id="sort-btn" style="background:none; border:none; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--mid); cursor:pointer !important; font-family:inherit; transition:color .2s; padding:0;">Edit Order</button>
     </div>
   </nav>
 
@@ -162,32 +162,29 @@
 
   <script src="./js/cms.js"></script>
   <script>
-    // Flags for coordinating identity + project load timing
-    var sortUser = null;
-    var projectsRendered = false;
+    // Load projects list
+    loadCmsContent({ page: 'projects', onLoad: function(projects) {
+      renderProjectsList(projects);
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    }});
 
-    function tryInitSort() {
-      if (!sortUser || !projectsRendered) return;
+    function activateSortMode(user) {
       var list = document.getElementById('cms-projects-list');
       if (!list || list.dataset.sortInit) return;
       list.dataset.sortInit = '1';
 
-      // Add sort-mode class + inject drag handles
       list.classList.add('sort-mode');
+      document.getElementById('sort-btn').textContent = '⠿ Sorting';
+      document.getElementById('sort-bar').classList.add('visible');
+
       list.querySelectorAll('.project-info').forEach(function(info) {
         var h = document.createElement('div');
         h.className = 'drag-handle';
         h.innerHTML = '⠿';
         info.appendChild(h);
+        h.addEventListener('mouseenter', function() { dot.classList.add('hover'); ring.classList.add('hover'); });
+        h.addEventListener('mouseleave', function() { dot.classList.remove('hover'); ring.classList.remove('hover'); });
       });
-
-      // Re-attach cursor hover for new handle elements
-      list.querySelectorAll('.drag-handle').forEach(function(el) {
-        el.addEventListener('mouseenter', function() { dot.classList.add('hover'); ring.classList.add('hover'); });
-        el.addEventListener('mouseleave', function() { dot.classList.remove('hover'); ring.classList.remove('hover'); });
-      });
-
-      document.getElementById('sort-bar').classList.add('visible');
 
       Sortable.create(list, {
         handle: '.drag-handle',
@@ -195,12 +192,11 @@
         ghostClass: 'sortable-ghost',
         dragClass: 'sortable-drag',
         onEnd: function() {
-          // Re-apply alternating flip classes after reorder
           list.querySelectorAll('.project-row').forEach(function(row, i) {
             if (i % 2 === 1) row.classList.add('flip');
             else row.classList.remove('flip');
           });
-          saveProjectOrder(sortUser);
+          saveProjectOrder(user);
         }
       });
     }
@@ -210,7 +206,6 @@
       var newOrder = Array.from(list.querySelectorAll('[data-id]')).map(function(el) {
         return el.getAttribute('data-id');
       });
-
       var statusEl = document.getElementById('sort-status');
       statusEl.textContent = 'Saving...';
       statusEl.className = 'saving';
@@ -218,7 +213,6 @@
       var token = user.token.access_token;
       var apiPath = '/.netlify/git/github/contents/content/projects-order.json';
 
-      // GET current file to retrieve SHA (required for PUT)
       fetch(apiPath, { headers: { Authorization: 'Bearer ' + token } })
         .then(function(r) { return r.json(); })
         .then(function(fileInfo) {
@@ -234,7 +228,7 @@
           });
         })
         .then(function(r) {
-          if (!r.ok) throw new Error('Save failed');
+          if (!r.ok) throw new Error();
           statusEl.textContent = '✓ Saved';
           statusEl.className = 'saved';
         })
@@ -244,39 +238,20 @@
         });
     }
 
-    // Load projects, then attempt sort init
-    loadCmsContent({ page: 'projects', onLoad: function(projects) {
-      renderProjectsList(projects);
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-      projectsRendered = true;
-      tryInitSort();
-    }});
-
-    // Check Netlify Identity for sort mode
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', function(user) {
-        if (user) {
-          sortUser = user;
-          tryInitSort();
-        } else {
-          var loginBtn = document.getElementById('sort-login-btn');
-          if (loginBtn) loginBtn.style.display = 'inline';
-          window.netlifyIdentity.on('login', function(u) {
-            if (loginBtn) loginBtn.style.display = 'none';
-            sortUser = u;
-            tryInitSort();
-          });
-        }
-      });
-
-      // Fallback: init event sometimes fires before listener is set up
-      setTimeout(function() {
-        if (!sortUser) {
-          var u = window.netlifyIdentity.currentUser();
-          if (u) { sortUser = u; tryInitSort(); }
-        }
-      }, 800);
-    }
+    // "Edit Order" button — click to activate sort mode
+    document.getElementById('sort-btn').addEventListener('click', function() {
+      if (!window.netlifyIdentity) return;
+      var user = window.netlifyIdentity.currentUser();
+      if (user) {
+        activateSortMode(user);
+      } else {
+        window.netlifyIdentity.open();
+        window.netlifyIdentity.on('login', function(u) {
+          window.netlifyIdentity.close();
+          activateSortMode(u);
+        });
+      }
+    });
   </script>
 </body>
 </html>
