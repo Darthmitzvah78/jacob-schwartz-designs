@@ -1,1 +1,12 @@
-{ "projects": ["proctoru", "titan", "emerant", "nbn", "vecchia", "jrburns", "uab", "create"] }
+{
+  "projects": [
+    "titan",
+    "proctoru",
+    "emerant",
+    "nbn",
+    "vecchia",
+    "jrburns",
+    "uab",
+    "create"
+  ]
+}
