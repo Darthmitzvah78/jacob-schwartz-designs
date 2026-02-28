@@ -125,7 +125,9 @@
   <nav>
     <a href="jacob-schwartz-designs.html" class="nav-back">← Home</a>
     <a href="jacob-schwartz-designs.html" class="nav-logo"><span class="logo-top">Jacob Schwartz</span><span class="logo-bottom">Designs</span></a>
-    <div class="nav-right"></div>
+    <div class="nav-right">
+      <button id="sort-login-btn" onclick="window.netlifyIdentity && window.netlifyIdentity.open()" style="display:none; background:none; border:none; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--mid); cursor:pointer !important; font-family:inherit; transition:color .2s; padding:0;">Edit Order</button>
+    </div>
   </nav>
 
   <div class="page-header">
@@ -261,7 +263,11 @@
           sortUser = user;
           tryInitSort();
         } else {
+          // Show "Edit Order" login button for admins
+          var loginBtn = document.getElementById('sort-login-btn');
+          if (loginBtn) loginBtn.style.display = 'inline';
           window.netlifyIdentity.on('login', function(u) {
+            if (loginBtn) loginBtn.style.display = 'none';
             sortUser = u;
             tryInitSort();
           });
