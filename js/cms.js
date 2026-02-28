@@ -92,7 +92,7 @@ function renderProjectsList(projects) {
     var flip = i % 2 === 1 ? ' flip' : '';
     var thumb = p.thumbnail || p.hero_image || '';
     var url = 'jsd-project.html?id=' + p._id;
-    return '<a href="' + url + '" class="project-row' + flip + ' reveal">' +
+    return '<a href="' + url + '" class="project-row' + flip + ' reveal" data-id="' + p._id + '">' +
       '<div class="project-thumb"><img src="' + thumb + '" alt="' + p.title + '"></div>' +
       '<div class="project-info">' +
         '<div class="project-meta"><span class="project-num">' + p.num + '</span><span class="project-category">' + p.category + '</span></div>' +
