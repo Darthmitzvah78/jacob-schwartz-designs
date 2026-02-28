@@ -131,7 +131,7 @@
   </div>
 
   <div class="project-hero">
-    <img src="jacob-fyi/images/ProctorU-Corp-Suite.jpg" alt="ProctorU Corporate Suite">
+    <img id="cms-hero" src="jacob-fyi/images/ProctorU-Corp-Suite.jpg" alt="ProctorU Corporate Suite">
   </div>
 
   <div class="project-desc reveal">
@@ -141,11 +141,7 @@
     </div>
   </div>
 
-  <div class="project-images cols-2">
-    <div class="img-cell tall reveal"><img src="jacob-fyi/images/ProctorU-Logo-bluebg.png" alt="ProctorU Logo"></div>
-    <div class="img-cell tall reveal"><img src="jacob-fyi/images/ProctorU-SubBrands2.png" alt="ProctorU Sub-brands"></div>
-    <div class="img-cell wide reveal"><img src="jacob-fyi/images/ProctorU-Website.jpg" alt="ProctorU Website"></div>
-  </div>
+  <div id="cms-gallery"></div>
 
   <a href="jsd-titan.html" class="next-project">
     <div>
@@ -165,8 +161,7 @@
   <div class="cursor-ring" id="cursorRing"></div>
 
   <script>
-    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
     let cx=-100,cy=-100,rx=-100,ry=-100;
     document.addEventListener('mousemove', e => { cx=e.clientX; cy=e.clientY; dot.style.left=cx+'px'; dot.style.top=cy+'px'; });
@@ -185,10 +180,7 @@
   </script>
   <script src="./js/cms.js"></script>
   <script>
-    loadCmsContent({ projectId: 'proctoru', onLoad: function(d) {
-      var el = document.getElementById('cms-description');
-      if (el && d.description) el.innerHTML = parseBold(d.description);
-    } });
+    loadCmsContent({ projectId: 'proctoru' });
   </script>
   <script>
     if (window.netlifyIdentity) {

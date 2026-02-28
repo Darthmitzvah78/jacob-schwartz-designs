@@ -4,5 +4,12 @@
   "category": "Branding & Event",
   "client": "The Cultural Alliance of Birmingham",
   "services": "Art Direction, Branding, Event, Print, Web",
-  "description": "In 2014, The Cultural Alliance of Birmingham set out to **expand their mission for the creative industries** in the community. Create Birmingham was the result — a new identity built to rally artists, makers, and culture-builders across the city under a single banner. The brand launch included a full identity system, print collateral, web design, and a citywide event to bring it all to life."
+  "description": "In 2014, The Cultural Alliance of Birmingham set out to **expand their mission for the creative industries** in the community. Create Birmingham was the result — a new identity built to rally artists, makers, and culture-builders across the city under a single banner. The brand launch included a full identity system, print collateral, web design, and a citywide event to bring it all to life.",
+  "hero_image": "jacob-fyi/images/Create-MockUp-640x640.jpg",
+  "gallery_cols": "cols-3",
+  "gallery": [
+    { "image": "jacob-fyi/images/create-brochure.jpg", "layout": "tall" },
+    { "image": "jacob-fyi/images/create-inside.jpg", "layout": "tall" },
+    { "image": "jacob-fyi/images/IMG_2346-683x1024.jpg", "layout": "tall" }
+  ]
 }

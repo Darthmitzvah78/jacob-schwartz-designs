@@ -4,5 +4,11 @@
   "category": "Campaign",
   "client": "UAB Hospital",
   "services": "Art Direction, Campaign, Environmental, Photography",
-  "description": "A large-scale campaign for the University of Alabama at Birmingham Hospital, built around a single idea: **every person in that building is part of the team** — from kitchen staff to surgeons. The concept framed the entire workforce as a partnership of heroes. Delivered as 40+ elevator wraps, campaign posters, and social media content across the hospital campus."
+  "description": "A large-scale campaign for the University of Alabama at Birmingham Hospital, built around a single idea: **every person in that building is part of the team** — from kitchen staff to surgeons. The concept framed the entire workforce as a partnership of heroes. Delivered as 40+ elevator wraps, campaign posters, and social media content across the hospital campus.",
+  "hero_image": "jacob-fyi/images/UAB-HR-Elevators.jpg",
+  "gallery_cols": "cols-2",
+  "gallery": [
+    { "image": "jacob-fyi/images/UAB-Posters-straight.jpg", "layout": "tall" },
+    { "image": "jacob-fyi/images/UAB-Helipad.jpg", "layout": "tall" }
+  ]
 }

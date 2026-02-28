@@ -4,5 +4,12 @@
   "category": "Identity & Brand System",
   "client": "Emerant Wealth",
   "services": "Art Direction, Brand System, Logo, Print, Web UI",
-  "description": "Emerant Wealth is a subsidiary of Warren Averett focused on **long-term money management and investments** for families and individuals. Formed to fill a need for personal, long-term individual investment strategies, the brand required a look that communicated trust, stability, and discretion — from logo through full corporate suite, folder system, and web UI."
+  "description": "Emerant Wealth is a subsidiary of Warren Averett focused on **long-term money management and investments** for families and individuals. Formed to fill a need for personal, long-term individual investment strategies, the brand required a look that communicated trust, stability, and discretion — from logo through full corporate suite, folder system, and web UI.",
+  "hero_image": "jacob-fyi/images/Emerant-Corp-Suite.jpg",
+  "gallery_cols": "cols-2",
+  "gallery": [
+    { "image": "jacob-fyi/images/Emerant-Logo.jpg", "layout": "tall" },
+    { "image": "jacob-fyi/images/Emerant-Folder-sml.jpg", "layout": "tall" },
+    { "image": "jacob-fyi/images/Emerant-Website.jpg", "layout": "wide" }
+  ]
 }

@@ -104,7 +104,7 @@
   </div>
 
   <div class="project-hero">
-    <img src="jacob-fyi/images/UAB-HR-Elevators.jpg" alt="UAB Hospital Elevator Wraps">
+    <img id="cms-hero" src="jacob-fyi/images/UAB-HR-Elevators.jpg" alt="UAB Hospital Elevator Wraps">
   </div>
 
   <div class="project-desc reveal">
@@ -114,10 +114,7 @@
     </div>
   </div>
 
-  <div class="project-images cols-2">
-    <div class="img-cell tall reveal"><img src="jacob-fyi/images/UAB-Posters-straight.jpg" alt="UAB Posters"></div>
-    <div class="img-cell tall reveal"><img src="jacob-fyi/images/UAB-Helipad.jpg" alt="UAB Helipad"></div>
-  </div>
+  <div id="cms-gallery"></div>
 
   <a href="jsd-create.html" class="next-project">
     <div><p class="next-label">Next Project</p><p class="next-title">Create Birmingham</p></div>
@@ -133,8 +130,7 @@
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
   <script>
-    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
     let cx=-100,cy=-100,rx=-100,ry=-100;
     document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;dot.style.left=cx+'px';dot.style.top=cy+'px';});
@@ -148,10 +144,7 @@
   </script>
   <script src="./js/cms.js"></script>
   <script>
-    loadCmsContent({ projectId: 'uab', onLoad: function(d) {
-      var el = document.getElementById('cms-description');
-      if (el && d.description) el.innerHTML = parseBold(d.description);
-    } });
+    loadCmsContent({ projectId: 'uab' });
   </script>
   <script>
     if (window.netlifyIdentity) {

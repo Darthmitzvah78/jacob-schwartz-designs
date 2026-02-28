@@ -104,7 +104,7 @@
   </div>
 
   <div class="project-hero">
-    <img src="jacob-fyi/images/Create-MockUp-640x640.jpg" alt="Create Birmingham Website">
+    <img id="cms-hero" src="jacob-fyi/images/Create-MockUp-640x640.jpg" alt="Create Birmingham Website">
   </div>
 
   <div class="project-desc reveal">
@@ -114,11 +114,7 @@
     </div>
   </div>
 
-  <div class="project-images cols-3">
-    <div class="img-cell tall reveal"><img src="jacob-fyi/images/create-brochure.jpg" alt="Create Birmingham Brochure"></div>
-    <div class="img-cell tall reveal"><img src="jacob-fyi/images/create-inside.jpg" alt="Create Birmingham Brochure Interior"></div>
-    <div class="img-cell tall reveal"><img src="jacob-fyi/images/IMG_2346-683x1024.jpg" alt="Create Birmingham Event Poster"></div>
-  </div>
+  <div id="cms-gallery"></div>
 
   <a href="jsd-proctoru.html" class="next-project">
     <div><p class="next-label">Next Project</p><p class="next-title">ProctorU</p></div>
@@ -134,8 +130,7 @@
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
   <script>
-    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
     let cx=-100,cy=-100,rx=-100,ry=-100;
     document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;dot.style.left=cx+'px';dot.style.top=cy+'px';});
@@ -149,10 +144,7 @@
   </script>
   <script src="./js/cms.js"></script>
   <script>
-    loadCmsContent({ projectId: 'create', onLoad: function(d) {
-      var el = document.getElementById('cms-description');
-      if (el && d.description) el.innerHTML = parseBold(d.description);
-    } });
+    loadCmsContent({ projectId: 'create' });
   </script>
   <script>
     if (window.netlifyIdentity) {

@@ -20,6 +20,24 @@ collections:
       - { label: "Client", name: "client", widget: "string" }
       - { label: "Services (comma separated)", name: "services", widget: "string" }
       - { label: "Description", name: "description", widget: "text", hint: "Use **bold text** to highlight key phrases." }
+      - { label: "Hero Image", name: "hero_image", widget: "image" }
+      - label: "Gallery Columns"
+        name: "gallery_cols"
+        widget: "select"
+        options: ["cols-2", "cols-3"]
+        default: "cols-2"
+      - label: "Gallery Images"
+        name: "gallery"
+        widget: "list"
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - label: "Layout"
+            name: "layout"
+            widget: "select"
+            options:
+              - { label: "Square / Tall (4:3)", value: "tall" }
+              - { label: "Full Width (16:7)", value: "wide" }
+            default: "tall"
 
   - name: "pages"
     label: "Pages"
